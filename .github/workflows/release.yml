@@ -10,7 +10,7 @@ jobs:
   container:
     runs-on: ubuntu-latest
     env: # this is to push connectors to staging
-      BALLERINA_STAGE_CENTRAL: true
+      BALLERINA_DEV_CENTRAL: true
     container:
       image: ballerina/ballerina:swan-lake-beta6
       options: --user root
