@@ -9,6 +9,8 @@ on:
 jobs:
   container:
     runs-on: ubuntu-latest
+    env: # this is to push connectors to staging
+      BALLERINA_STAGE_CENTRAL: true
     container:
       image: ballerina/ballerina:2201.0.0
       options: --user root
