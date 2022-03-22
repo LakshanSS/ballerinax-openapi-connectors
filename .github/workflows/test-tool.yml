@@ -1,0 +1,24 @@
+name: Test OpenAPI tool
+
+on:
+  workflow_dispatch:
+    inputs:
+      bal_docker_version:
+        description: Ballerina Docker version
+        required: true
+        default: 'nightly'
+      
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    container:
+      image: ballerina/ballerina:nightly
+      options: --user root
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build with Gradle
+        env:
+          JAVA_OPTS: -DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true
+          GRADLE_USER_HOME: ~/.gradle
+        run: |
+          ./gradlew build -PtestTool=true
